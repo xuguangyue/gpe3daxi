@@ -1,4 +1,6 @@
 *.dat
 *.txt
 *.png
+*.o
+*.nb
 .DS_Store
