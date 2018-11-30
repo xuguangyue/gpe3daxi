@@ -1,7 +1,7 @@
 clear
 clc
 
-dyn=load('./amp=0.10_f=4.286/realaxi-dyna.txt');
+dyn=load('./realaxi-dyna.txt');
 t = dyn(:,1);
 nt = length(t);
 dt = t(2)-t(1);

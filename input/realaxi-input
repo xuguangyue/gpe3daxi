@@ -120,7 +120,7 @@
 #  Number of subsequent iterations with fixed nonlinearity G0.
 #  Required: yes
 #  Type: long
-   NPAS = 150000
+   NPAS = 50000
 
 #  Number of final iterations with fixed nonlinearity G0.
 #  Required: yes
