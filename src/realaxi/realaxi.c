@@ -270,12 +270,12 @@ int main(int argc, char **argv) {
       for(cntk = 1; cntk <= Npas; cntk ++) {
 
          tt = cntk * dt * par;
-         vnut = vnu * (1. + amp * sin(freq * tt));
-         vlambdat = vlambda * (1. + amp * sin(freq * tt));
+         vnut = vnu * (1. + ampr * sin(freq * tt) + ampr/10.0 * cos(2.0 * freq * tt) - ampr/10.0);
+         vlambdat = vlambda * (1. + ampz * sin(freq * tt) + ampz/5.0 * cos(2.0 * freq * tt) - ampz/5.0);
          vnu2t = vnut * vnut;
          vlambda2t = vlambdat * vlambdat;
 
-         zt = -zamp * sin(freq * tt);
+         zt = -zamp * sin(freq * tt) - zamp/5.0 * cos(2.0 * freq * tt) + zamp/5.0;
 
          for(cnti = 0; cnti < Nrho; cnti ++) {
             for(cntj = 0; cntj < Nz; cntj ++) {
@@ -519,11 +519,17 @@ void readpar(void) {
    }
    vlambda = atof(cfg_tmp);
 
-   if((cfg_tmp = cfg_read("AMP")) == NULL) {
-      fprintf(stderr, "AMP is not defined in the configuration file.\n");
+   if((cfg_tmp = cfg_read("AMPR")) == NULL) {
+      fprintf(stderr, "AMPR is not defined in the configuration file.\n");
       exit(EXIT_FAILURE);
    }
-   amp = atof(cfg_tmp);
+   ampr = atof(cfg_tmp);
+
+   if((cfg_tmp = cfg_read("AMPZ")) == NULL) {
+      fprintf(stderr, "AMPZ is not defined in the configuration file.\n");
+      exit(EXIT_FAILURE);
+   }
+   ampz = atof(cfg_tmp);
 
    if((cfg_tmp = cfg_read("ZAMP")) == NULL) {
       fprintf(stderr, "ZAMP is not defined in the configuration file.\n");
@@ -672,8 +678,8 @@ void init(double complex **psi, double **abc) {
             }
             else{
    //            srand((unsigned int)time(NULL));
-               psir = randn(0, 0.1 * sqrt(Na) * tmp)/sqrt(Na);
-               psii = randn(0, 0.1 * sqrt(Na) * tmp)/sqrt(Na);
+               psir = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
+               psii = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
             }
             psi[cnti][cntj] = tmp + psir + I * psii;
          }

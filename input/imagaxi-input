@@ -68,12 +68,12 @@
 #  Spatial discretization step in the rho-direction.
 #  Required: yes
 #  Type: double
-   DRHO = 0.02
+   DRHO = 0.05
 
 #  Spatial discretization step in the z-direction.
 #  Required: yes
 #  Type: double
-   DZ = 0.02
+   DZ = 0.05
 
 #  Time discretization step.
 #  Required: yes

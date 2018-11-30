@@ -2,11 +2,18 @@
 clear
 clc
 
-ff = './realaxi-tmp_';
+ff = './';
 
-for j=1
-
-    [r,z,den]=loadrz([ff,num2str(j)]);
-    imagesc(r,z,den)
+for j=50
+    
+    if j==0        
+        file = [ff,'realaxi-den-init'];
+    else
+        file =[ff,'realaxi-tmp_',num2str(j)];
+    end
+    
+    [r,z,den]=loadrz(file);
+    mesh(r,z,den)
+    view(-90,0)
     
 end

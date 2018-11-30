@@ -74,17 +74,17 @@
 #  Spatial discretization step in the rho-direction.
 #  Required: yes
 #  Type: double
-   DRHO = 0.02
+   DRHO = 0.05
 
 #  Spatial discretization step in the z-direction.
 #  Required: yes
 #  Type: double
-   DZ = 0.02
+   DZ = 0.05
 
 #  Time discretization step.
 #  Required: yes
 #  Type: double
-   DT = 0.0001
+   DT = 0.001
 
 #  Kappa coefficient of anisotropy of the trap (omega_phi / omega_rho).
 #  Required: yes
@@ -99,17 +99,22 @@
 #  Amplitude of shaking
 #  Required: yes
 #  Type: double
-   AMP = 0.0
+   AMPR = 0.1
 
 #  Amplitude of shaking
 #  Required: yes
 #  Type: double
-   ZAMP = 3.0
+   AMPZ = 0.25
+
+#  Amplitude of shaking
+#  Required: yes
+#  Type: double
+   ZAMP = 5.0
 
 #  frequency of shaking
 #  Required: yes
 #  Type: double
-   FREQ = 4.286
+   FREQ = 4.41
 
 #  Number of iterations to introduce the nonlinearity G0.
 #  If NSTP = 0, the program need to read the density file: imagaxi-den.txt
@@ -149,7 +154,7 @@
 #  function will not be saved.
 #  Required: no
 #  Type: string
-#   INITOUT = realaxi-den-init
+   INITOUT = realaxi-den-init
 
 #  Output file with the wave function obtained after the first NSTP iterations,
 #  which introduce nonlinearity G0. If not defined, the wave function will not
@@ -198,4 +203,4 @@
 #  Required if DYNAOUT is defined.
 #  Required: conditionally
 #  Type: long
-   OUTSTPWF = 5000
+   OUTSTPWF = 500
