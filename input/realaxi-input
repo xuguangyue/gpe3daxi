@@ -99,7 +99,12 @@
 #  Amplitude of shaking
 #  Required: yes
 #  Type: double
-   AMP = 0.10
+   AMP = 0.0
+
+#  Amplitude of shaking
+#  Required: yes
+#  Type: double
+   ZAMP = 3.0
 
 #  frequency of shaking
 #  Required: yes
