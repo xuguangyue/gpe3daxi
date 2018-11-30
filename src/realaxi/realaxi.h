@@ -50,7 +50,7 @@ double G0, Gpar, G;
 double aho, as;
 double vnu, vlambda;
 double vnu2, vlambda2;
-double amp, freq;
+double amp, zamp, freq;
 double par;
 double pi;
 

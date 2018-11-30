@@ -83,7 +83,9 @@ int main(int argc, char **argv) {
    int nthreads;
    long cnti, cntj, cntk;
    double norm, mu, en;
-   double vnu2t, vlambda2t, tt;
+   double tt, zt;
+   double vnut, vlambdat;
+   double vnu2t, vlambda2t;
    double *rms;
    double complex **psi;
    double complex **cbeta;
@@ -268,12 +270,16 @@ int main(int argc, char **argv) {
       for(cntk = 1; cntk <= Npas; cntk ++) {
 
          tt = cntk * dt * par;
-         vnu2t = vnu2 * (1. + amp * sin(freq * tt));
-         vlambda2t = vlambda2 * (1. + amp * sin(freq * tt));
+         vnut = vnu * (1. + amp * sin(freq * tt));
+         vlambdat = vlambda * (1. + amp * sin(freq * tt));
+         vnu2t = vnut * vnut;
+         vlambda2t = vlambdat * vlambdat;
+
+         zt = -zamp * sin(freq * tt);
 
          for(cnti = 0; cnti < Nrho; cnti ++) {
             for(cntj = 0; cntj < Nz; cntj ++) {
-               pot[cnti][cntj] = (vnu2t * rho2[cnti] + vlambda2t * z2[cntj]);
+               pot[cnti][cntj] = (vnu2t * rho2[cnti] + vlambda2t * (z[cntj] - zt) * (z[cntj] - zt)) ;
             }
          }
 
@@ -518,6 +524,12 @@ void readpar(void) {
       exit(EXIT_FAILURE);
    }
    amp = atof(cfg_tmp);
+
+   if((cfg_tmp = cfg_read("ZAMP")) == NULL) {
+      fprintf(stderr, "ZAMP is not defined in the configuration file.\n");
+      exit(EXIT_FAILURE);
+   }
+   zamp = atof(cfg_tmp);
 
    if((cfg_tmp = cfg_read("FREQ")) == NULL) {
       fprintf(stderr, "FREQ is not defined in the configuration file.\n");
