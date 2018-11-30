@@ -449,8 +449,8 @@ void readpar(void) {
    if((cfg_tmp = cfg_read("G0")) == NULL) {
 
       if((cfg_tmp = cfg_read("NATOMS")) == NULL) {
-	fprintf(stderr, "NATOMS is not defined in the configuration file.\n");
-	exit(EXIT_FAILURE);
+      	fprintf(stderr, "NATOMS is not defined in the configuration file.\n");
+      	exit(EXIT_FAILURE);
       }
       Na = atol(cfg_tmp);
 
@@ -606,6 +606,7 @@ void init(double complex **psi, double **abc) {
    long cnti, cntj;
    double pi3, cpsi;
    double tmp;
+   double psir, psii;
    FILE *file;
 
    if (opt == 1) par = 1.;
@@ -664,12 +665,51 @@ void init(double complex **psi, double **abc) {
       fclose(file);
       for(cnti = 0; cnti < Nrho; cnti ++) {
          for(cntj = 0; cntj < Nz; cntj ++) {
-            psi[cnti][cntj] = sqrt(abc[cnti][cntj]);
+            tmp = sqrt(abc[cnti][cntj]);
+            if (tmp < 1.0e-10){
+               psir = 0.;
+               psii = 0.;
+            }
+            else{
+   //            srand((unsigned int)time(NULL));
+               psir = randn(0, 0.1 * sqrt(Na) * tmp)/sqrt(Na);
+               psii = randn(0, 0.1 * sqrt(Na) * tmp)/sqrt(Na);
+            }
+            psi[cnti][cntj] = tmp + psir + I * psii;
          }
       }
    }
 
    return;
+}
+
+
+double randn(double mu, double sigma){
+  double U1, U2, W, mult;
+  static double X1, X2;
+  static int call = 0;
+
+  if (call == 1)
+    {
+      call = !call;
+      return (mu + sigma * (double) X2);
+    }
+
+  do
+    {
+      U1 = -1 + ((double) rand () / RAND_MAX) * 2;
+      U2 = -1 + ((double) rand () / RAND_MAX) * 2;
+      W = pow (U1, 2) + pow (U2, 2);
+    }
+  while (W >= 1 || W == 0);
+
+  mult = sqrt ((-2 * log (W)) / W);
+  X1 = U1 * mult;
+  X2 = U2 * mult;
+
+  call = !call;
+
+  return (mu + sigma * (double) X1);
 }
 
 /**

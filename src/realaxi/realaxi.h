@@ -64,6 +64,7 @@ double complex *cgammarho, *cgammaz;
 
 void readpar(void);
 void init(double complex **, double **);
+double randn(double, double);
 void gencoef(void);
 void calcnorm(double *, double complex **, double **, double **);
 void calcmuen(double *, double *, double complex **, double **, double **, double **, double **, double **, double **, double **, double **, double **, double **);
