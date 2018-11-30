@@ -671,17 +671,17 @@ void init(double complex **psi, double **abc) {
       fclose(file);
       for(cnti = 0; cnti < Nrho; cnti ++) {
          for(cntj = 0; cntj < Nz; cntj ++) {
-            tmp = sqrt(abc[cnti][cntj]);
-            if (tmp < 1.0e-10){
-               psir = 0.;
-               psii = 0.;
-            }
-            else{
-   //            srand((unsigned int)time(NULL));
-               psir = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
-               psii = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
-            }
-            psi[cnti][cntj] = tmp + psir + I * psii;
+            psi[cnti][cntj] = sqrt(abc[cnti][cntj]);
+   //          if (tmp < 1.0e-10){
+   //             psir = 0.;
+   //             psii = 0.;
+   //          }
+   //          else{
+   // //            srand((unsigned int)time(NULL));
+   //             psir = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
+   //             psii = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
+   //          }
+            // psi[cnti][cntj] = tmp + psir + I * psii;
          }
       }
    }

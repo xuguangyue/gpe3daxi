@@ -203,4 +203,4 @@
 #  Required if DYNAOUT is defined.
 #  Required: conditionally
 #  Type: long
-   OUTSTPWF = 500
+   OUTSTPWF = 5000

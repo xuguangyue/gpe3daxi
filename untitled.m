@@ -10,6 +10,7 @@ dxt = dyn(:,5);
 dzt = dyn(:,6);
 
 dxw = fftshift(fft(dxt - mean(dxt)));
+dzw = fftshift(fft(dzt - mean(dzt)));
 zzw = fftshift(fft(zzt - mean(zzt)));
 if ~mod(nt,2)
     w = 2*pi/(nt*dt)*(-nt/2:nt/2-1);
@@ -22,8 +23,8 @@ plot(t,dxt/sqrt(2),t,dzt)
 xlabel('\omega_0 t')
 ylabel('\Deltax/l_0')
 subplot(212)
-plot(w,abs(dxw))
+plot(w/sqrt(5),abs(dxw),w/sqrt(5),abs(dzw))
 xlabel('$\omega/(\sqrt{5}\omega_0)$','interpreter','latex')
 ylabel('\Deltax(\omega)')
-xlim([-20 20])
+xlim([-4 4])
 grid on

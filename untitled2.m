@@ -4,7 +4,7 @@ clc
 
 ff = './';
 
-for j=50
+for j=80
     
     if j==0        
         file = [ff,'realaxi-den-init'];
