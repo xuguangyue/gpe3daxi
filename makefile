@@ -58,7 +58,7 @@ imag2d: diffint cfg mem
 
 imagaxi: diffint cfg mem
 	$(CC) $(CFLAGS) $(OMPFLAGS) -c src/imagaxi/imagaxi.c -o imagaxi.o
-	$(CC) $(CFLAGS) $(OMPFLAGS) -o imagaxi diffint.o cfg.o mem.o imagaxi.o $(CLIBS) $(OMPLIBS)
+	$(CC) $(CFLAGS) $(OMPFLAGS) -o imagaxi.out diffint.o cfg.o mem.o imagaxi.o $(CLIBS) $(OMPLIBS)
 
 imag3d: diffint cfg mem
 	$(CC) $(CFLAGS) $(OMPFLAGS) -c src/imag3d/imag3d.c -o imag3d.o
@@ -82,7 +82,7 @@ real2d: diffint cfg mem
 
 realaxi: diffint cfg mem
 	$(CC) $(CFLAGS) $(OMPFLAGS) -c src/realaxi/realaxi.c -o realaxi.o
-	$(CC) $(CFLAGS) $(OMPFLAGS) -o realaxi diffint.o cfg.o mem.o realaxi.o $(CLIBS) $(OMPLIBS)
+	$(CC) $(CFLAGS) $(OMPFLAGS) -o realaxi.out diffint.o cfg.o mem.o realaxi.o $(CLIBS) $(OMPLIBS)
 	rm -rf *.o
 
 real3d: diffint cfg mem
@@ -99,4 +99,4 @@ mem:
 	$(CC) $(CFLAGS) -c src/utils/mem.c -o mem.o
 
 clean:
-	rm -rf *~ *.o imagaxi realaxi
+	rm -rf *~ *.o *.out
