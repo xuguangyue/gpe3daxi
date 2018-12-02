@@ -280,6 +280,7 @@ int main(int argc, char **argv) {
          for(cnti = 0; cnti < Nrho; cnti ++) {
             for(cntj = 0; cntj < Nz; cntj ++) {
                pot[cnti][cntj] = (vnu2t * rho2[cnti] + vlambda2t * (z[cntj] - zt) * (z[cntj] - zt)) ;
+               // pot[cnti][cntj] = (vnu2t * rho2[cnti] + vlambda2t * z2[cntj]) ;
             }
          }
 
@@ -611,7 +612,7 @@ void readpar(void) {
 void init(double complex **psi, double **abc) {
    long cnti, cntj;
    double pi3, cpsi;
-   double tmp;
+   double tmp, Na4;
    double psir, psii;
    FILE *file;
 
@@ -624,6 +625,7 @@ void init(double complex **psi, double **abc) {
 
    vnu2 = vnu * vnu;
    vlambda2 = vlambda * vlambda;
+   Na4 = pow(Na, 0.25);
 
    Nrho2 = Nrho / 2; Nz2 = Nz / 2;
    drho2 = drho * drho; dz2 = dz * dz;
@@ -669,8 +671,11 @@ void init(double complex **psi, double **abc) {
          }
       }
       fclose(file);
+
+      srand((unsigned int)time(NULL));
       for(cnti = 0; cnti < Nrho; cnti ++) {
          for(cntj = 0; cntj < Nz; cntj ++) {
+<<<<<<< HEAD
             tmp= sqrt(abc[cnti][cntj]);
             if (tmp < 1.0e-10){
                psir = 0.;
@@ -681,6 +686,13 @@ void init(double complex **psi, double **abc) {
                psir = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
                psii = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
             }
+=======
+            tmp = sqrt(abc[cnti][cntj]);
+
+            psir = randn(0, 0.5 * tmp) / Na4 ;
+            psii = randn(0, 0.5 * tmp) / Na4;
+
+>>>>>>> 4b2a032b0a8b58c04b08d6098c42a0d6d2c55fe1
             psi[cnti][cntj] = tmp + psir + I * psii;
          }
       }
@@ -688,7 +700,6 @@ void init(double complex **psi, double **abc) {
 
    return;
 }
-
 
 double randn(double mu, double sigma){
   double U1, U2, W, mult;

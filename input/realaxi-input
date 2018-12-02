@@ -109,7 +109,7 @@
 #  Amplitude of shaking
 #  Required: yes
 #  Type: double
-   ZAMP = 5.0
+   ZAMP = 0.0
 
 #  frequency of shaking
 #  Required: yes
