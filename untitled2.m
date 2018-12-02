@@ -4,7 +4,7 @@ clc
 
 ff = './';
 
-for j=20
+for j=50
     
     if j==0        
         file = [ff,'realaxi-den-init'];
@@ -15,6 +15,5 @@ for j=20
     [r,z,den]=loadrz(file);
     figure
     mesh(r,z,den)
-    view(-90,0)
-    
+
 end

@@ -99,12 +99,12 @@
 #  Amplitude of shaking
 #  Required: yes
 #  Type: double
-   AMPR = 0.1
+   AMPR = 0.0
 
 #  Amplitude of shaking
 #  Required: yes
 #  Type: double
-   AMPZ = 0.25
+   AMPZ = 0.12
 
 #  Amplitude of shaking
 #  Required: yes
@@ -114,7 +114,7 @@
 #  frequency of shaking
 #  Required: yes
 #  Type: double
-   FREQ = 4.41
+   FREQ = 1.414
 
 #  Number of iterations to introduce the nonlinearity G0.
 #  If NSTP = 0, the program need to read the density file: imagaxi-den.txt
@@ -125,12 +125,12 @@
 #  Number of subsequent iterations with fixed nonlinearity G0.
 #  Required: yes
 #  Type: long
-   NPAS = 50000
+   NPAS = 22218
 
 #  Number of final iterations with fixed nonlinearity G0.
 #  Required: yes
 #  Type: long
-   NRUN = 0
+   NRUN = 27782
 
 #  Output file with the summary of final values of all physical quantities. If
 #  not defined, standard output will be used.
@@ -203,4 +203,4 @@
 #  Required if DYNAOUT is defined.
 #  Required: conditionally
 #  Type: long
-   OUTSTPWF = 5000
+   OUTSTPWF = 1000
