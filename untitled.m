@@ -18,6 +18,7 @@ else
     w = 2*pi/(nt*dt)*(-(nt-1)/2:(nt-1)/2);
 end
 
+figure
 subplot(211)
 plot(t,dxt/sqrt(2),t,dzt)
 xlabel('\omega_0 t')

@@ -64,12 +64,12 @@
 #  Number of discretization points in the rho-direction.
 #  Required: yes
 #  Type: long
-   NRHO = 750
+   NRHO = 500
 
 #  Number of discretization points in the z-direction.
 #  Required: yes
 #  Type: long
-   NZ = 1500
+   NZ = 1000
 
 #  Spatial discretization step in the rho-direction.
 #  Required: yes
