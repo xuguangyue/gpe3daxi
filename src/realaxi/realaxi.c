@@ -675,24 +675,11 @@ void init(double complex **psi, double **abc) {
       srand((unsigned int)time(NULL));
       for(cnti = 0; cnti < Nrho; cnti ++) {
          for(cntj = 0; cntj < Nz; cntj ++) {
-<<<<<<< HEAD
-            tmp= sqrt(abc[cnti][cntj]);
-            if (tmp < 1.0e-10){
-               psir = 0.;
-               psii = 0.;
-            }
-            else{
-   //            srand((unsigned int)time(NULL));
-               psir = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
-               psii = randn(0, 0.05 * sqrt(Na) * tmp)/sqrt(Na);
-            }
-=======
             tmp = sqrt(abc[cnti][cntj]);
 
             psir = randn(0, 0.5 * tmp) / Na4 ;
             psii = randn(0, 0.5 * tmp) / Na4;
 
->>>>>>> 4b2a032b0a8b58c04b08d6098c42a0d6d2c55fe1
             psi[cnti][cntj] = tmp + psir + I * psii;
          }
       }
